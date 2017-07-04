@@ -19,4 +19,12 @@
     <name>hbase.zookeeper.property.dataDir</name>
     <value>/zookeeper/data</value>
   </property>
+  <property>
+   <name>hbase.rest.port</name>
+   <value>8880</value>
+ </property>
+ <property>
+   <name>hbase.rest.info.port</name>
+   <value>8885</value>
+ </property>
 </configuration>
