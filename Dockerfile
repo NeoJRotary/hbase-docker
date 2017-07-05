@@ -28,6 +28,9 @@ ADD hbase-site.xml $HBASE_CONF_DIR
 ADD regionservers $HBASE_CONF_DIR
 ADD backup-masters $HBASE_CONF_DIR
 
+VOLUME /data
+
 ADD hbase.sh /
 RUN chmod +x /hbase.sh
-CMD ["/hbase.sh"]
+
+CMD ["/hbase.sh", "-bash"]

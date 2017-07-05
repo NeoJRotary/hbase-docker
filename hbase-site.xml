@@ -16,10 +16,6 @@
     <value>/hbase/tmp</value>
   </property>
   <property>
-    <name>hbase.zookeeper.property.dataDir</name>
-    <value>/zookeeper/data</value>
-  </property>
-  <property>
    <name>hbase.rest.port</name>
    <value>8880</value>
  </property>

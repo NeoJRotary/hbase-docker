@@ -1,38 +1,39 @@
 #!/bin/bash
 
-echo "INIT HADOOP"
+# start hadoop
 /hadoop.sh
-echo "HADOOP IS READY"
-
-echo "sleep 3s"
 sleep 3s
 
-echo "START ZOOKEEPER"
-mkdir -p $ZOOKEEPER_HOME/data $ZOOKEEPER_HOME/logs
-if [ -f "$ZOOKEEPER_HOME/data/myid" ]
+if [ -d "/hbase/logs" ]
 then
-	$ZOOKEEPER_HOME/bin/zkServer.sh stop
-else
-  touch $ZOOKEEPER_HOME/data/myid
-  echo $ZK_MYID > $ZOOKEEPER_HOME/data/myid
+  rm -rf /hbase/logs/*
 fi
+if [ -d "/zookeeper/logs" ]
+then
+  rm -rf /hbase/logs/*
+fi
+
+# start zookeeper
+if [ ! -d "/data/zookeeper" ]
+then
+  mkdir -p /data/zookeeper /zookeeper/logs
+  touch /data/zookeeper/myid
+  echo $ZK_MYID > /data/zookeeper/myid
+fi
+rm -rf /zookeeper/logs/*
 $ZOOKEEPER_HOME/bin/zkServer.sh start
-echo "ZOOKEEPER IS READY"
 
+# start hbase
 if [[ $HOSTNAME == "master" ]]; then
-    echo "sleep 3s"
-    sleep 3s
+  sleep 3s
+  $HBASE_HOME/bin/start-hbase.sh
 
-    echo "START HBASE"
-    mkdir -p /hbase/tmp
-    $HBASE_HOME/bin/start-hbase.sh
-    echo "HBASE IS READY"
-
-    echo "sleep 3s"
-    sleep 3s
-    echo "START HBASE REST API"
-    hbase-daemon.sh start rest
-    echo "HBASE REST API IS READY"
+  # start rest api
+  sleep 3s
+  $HBASE_HOME/bin/hbase-daemon.sh start rest
 fi
 
-bash
+if [ "$1" == "-bash" ]
+then
+  bash
+fi
