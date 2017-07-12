@@ -11,8 +11,7 @@ if [ "$MODE" == "ENV" ]; then
   done
   echo "$region" > $HBASE_CONF_DIR/regionservers
 else
-  cat /hosts > /etc/hosts
-  IFS='\n' read -ra hostList <<< "$( < "$HADOOP_CONF_DIR"/slaves)"
+  IFS=' ' read -ra hostList <<< $(<$HBASE_CONF_DIR/regionservers)
   HOSTS=""
   for h in "${hostList[@]}"; do
     HOSTS="$HOSTS,$h"
