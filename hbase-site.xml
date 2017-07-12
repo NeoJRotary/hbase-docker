@@ -31,4 +31,20 @@
     <name>hbase.rest.info.port</name>
     <value>8885</value>
   </property>
+  <property>
+    <name>hbase.regionserver.dns.nameserver</name>
+    <value>DNSNAMESERVER</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.dns.nameserver</name>
+    <value>DNSNAMESERVER</value>
+  </property>
+  <property>
+    <name>hbase.regionserver.hostname</name>
+    <value>REGIONSERVER_HOSTNAME</value>
+  </property>
+  <property>
+    <name>hbase.regionserver.hostname.disable.master.reversedns</name>
+    <value>REGIONSERVER_REVERSE_DISABLE</value>
+  </property>
 </configuration>

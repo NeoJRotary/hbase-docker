@@ -27,6 +27,24 @@ for h in "${hostList[@]}"; do
 done
 echo "$zoo" >> $ZOOCFGDIR/zoo.cfg
 
+if [ "$DNSNAMESERVER" != "" ]; then
+  sed -i 's/DNSNAMESERVER/'"$DNSNAMESERVER"'/g' $HBASE_CONF_DIR/hbase-site.xml
+else 
+  sed -i 's/DNSNAMESERVER/default/g' $HBASE_CONF_DIR/hbase-site.xml
+fi
+
+if [ "$REGIONSERVER_HOSTNAME" != "" ]; then
+  sed -i 's/REGIONSERVER_HOSTNAME/'"$REGIONSERVER_HOSTNAME"'/g' $HBASE_CONF_DIR/hbase-site.xml
+else 
+  sed -i 's/REGIONSERVER_HOSTNAME//g' $HBASE_CONF_DIR/hbase-site.xml
+fi
+
+if [ "$REGIONSERVER_REVERSE_DISABLE" != "" ]; then
+  sed -i 's/REGIONSERVER_REVERSE_DISABLE/'"$REGIONSERVER_REVERSE_DISABLE"'/g' $HBASE_CONF_DIR/hbase-site.xml
+else 
+  sed -i 's/REGIONSERVER_REVERSE_DISABLE/false/g' $HBASE_CONF_DIR/hbase-site.xml
+fi
+
 sed -i 's/NAMENODE/'"${hostList[0]}"'/g' $HBASE_CONF_DIR/hbase-site.xml
 sed -i 's/HOSTLIST/'"$HOSTS"'/g' $HBASE_CONF_DIR/hbase-site.xml
 

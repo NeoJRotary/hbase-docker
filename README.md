@@ -20,6 +20,9 @@ Build from [hadoop-docker](https://github.com/NeoJRotary/hadoop-docker)
 
 ### ENV VAR
 - MYID : Zookeeper MYID. Start from 1.  
+- DNSNAMESERVER : change all DNS nameserver in `hbase-site.xml`. Default is "default".
+- REGIONSERVER_HOSTNAME : change `hbase.regionserver.hostname` property in `hbase-site.xml`. Default is empty value.
+- REGIONSERVER_REVERSE_DISABLE :  change `hbase.regionserver.hostname.disable.master.reversedns` property in `hbase-site.xml`. Default is false.
 
 See [hadoop-docker](https://github.com/NeoJRotary/hadoop-docker) for other ENV VAR.  
 
