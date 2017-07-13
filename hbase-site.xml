@@ -20,10 +20,6 @@
     <value>HOSTLIST</value>
   </property>
   <property>
-    <name>hbase.zookeeper.property.dataDir</name>
-    <value>/data/zookeeper</value>
-  </property>
-  <property>
     <name>hbase.rest.port</name>
     <value>8880</value>
   </property>

@@ -19,14 +19,15 @@ EXPOSE 16010
 EXPOSE 8880 8885
 
 ADD zookeeper-3.4.10 $ZOOKEEPER_HOME
-ADD zkEnv.sh $ZOOKEEPER_HOME/bin
-ADD zoo.cfg $ZOOKEEPER_HOME/conf
+ADD zkEnv.sh $ZOOBINDIR
+ADD zoo.cfg $ZOOCFGDIR
 
 ADD hbase-1.3.1 $HBASE_HOME
 ADD hbase-env.sh $HBASE_CONF_DIR
 ADD hbase-site.xml $HBASE_CONF_DIR
 ADD regionservers $HBASE_CONF_DIR
 ADD backup-masters $HBASE_CONF_DIR
+ADD zoo.cfg $HBASE_CONF_DIR
 
 VOLUME /data
 

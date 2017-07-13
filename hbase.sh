@@ -10,6 +10,7 @@ if [ "$MODE" == "ENV" ]; then
     region=$region$h$'\n'
   done
   echo "$region" > $HBASE_CONF_DIR/regionservers
+  sed -i '$ d' $HBASE_CONF_DIR/regionservers
 else
   IFS=' ' read -ra hostList <<< $(<$HBASE_CONF_DIR/regionservers)
   HOSTS=""
@@ -25,6 +26,7 @@ for h in "${hostList[@]}"; do
   num=$((num+1))
 done
 echo "$zoo" >> $ZOOCFGDIR/zoo.cfg
+echo "$zoo" >> $HBASE_CONF_DIR/zoo.cfg
 
 if [ "$DNSNAMESERVER" != "" ]; then
   sed -i 's/DNSNAMESERVER/'"$DNSNAMESERVER"'/g' $HBASE_CONF_DIR/hbase-site.xml
